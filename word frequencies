@@ -1,0 +1,44 @@
+# Import libray to process text
+# These are all the imports i am using for hw question 2
+import nltk 
+import re
+from nltk.tokenize import sent_tokenize, word_tokenize 
+nltk.download('punkt')
+from nltk.stem import PorterStemmer 
+
+# Load file uploading utility
+from google.colab import files
+
+# Launch file uploader
+uploaded = files.upload()
+
+
+#replace all capital letters with lowercase
+! tr '[:upper:]' '[:lower:]' < twitter.txt > clean.txt
+
+#reads file as a string
+read_file = open("clean.txt").read()
+#print(type(read_file))
+
+# using nltk to tokenize string read_file
+tokens = nltk.word_tokenize(read_file,language='english')
+
+#declare stemmer
+stemmer = PorterStemmer()
+#print(type(tokens))
+
+clean_text = []
+
+for token in tokens:
+  clean_text.append(token)
+  #print(token, " : ", stemmer.stem(token))
+
+# The final resulting variable should be called "clean_text". If all is correct, 
+# then the following code will compute word frequencies and plot a graph.
+
+# *If* you need to print a list of tokens to a file, on the same line, use:
+#
+#f = open("processed.txt", "w")
+#for token in list:
+#    print(token, file = f, end =" ")
+#f.close()
