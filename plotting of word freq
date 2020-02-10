@@ -1,0 +1,19 @@
+# Import maptplot for plotting, and counter for frequency counting
+import matplotlib.pyplot as plt
+from collections import Counter
+
+counts=Counter(clean_text.split(sep=' '))
+words_sorted = counts.most_common()
+word_ranks = []
+word_counts = []
+rank=1
+for item in words_sorted:
+    word_ranks.append(rank)
+    word_counts.append(item[1])
+    rank+=1
+
+# Plot raw values
+plt.scatter(word_ranks, word_counts)
+plt.xlabel('Words ranked according to frequency')
+plt.ylabel('Word frequency')
+plt.show();
