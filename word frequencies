@@ -6,6 +6,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 nltk.download('punkt')
 from nltk.stem import PorterStemmer 
 
+
 # Load file uploading utility
 from google.colab import files
 
@@ -25,14 +26,15 @@ tokens = nltk.word_tokenize(read_file,language='english')
 
 #declare stemmer
 stemmer = PorterStemmer()
-#print(type(tokens))
 
-clean_text = []
 
+clean_text = " "
+
+#store all tokens in a string with spaces between them bc plotting is expecting this
 for token in tokens:
-  clean_text.append(token)
-  #print(token, " : ", stemmer.stem(token))
-
+  clean_text += stemmer.stem(token) + " "
+  
+print(clean_text)
 # The final resulting variable should be called "clean_text". If all is correct, 
 # then the following code will compute word frequencies and plot a graph.
 
