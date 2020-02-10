@@ -21,22 +21,36 @@ uploaded = files.upload()
 read_file = open("clean.txt").read()
 #print(type(read_file))
 
+
+#replacing common contractions
+read_file = re.sub('.* (can\'t) .*','cannot',read_file)
+read_file = re.sub('.* (don\'t) .*','do not', read_file)
+read_file = re.sub('.* (won\'t) .*', 'will not',read_file)
+#print(read_file)
+
 # using nltk to tokenize string read_file
 tokens = nltk.word_tokenize(read_file,language='english')
 
 #declare stemmer
 stemmer = PorterStemmer()
 
-
-clean_text = " "
+#to store all stemmed words in a string
+clean_text = ""
 
 #store all tokens in a string with spaces between them bc plotting is expecting this
 for token in tokens:
   clean_text += stemmer.stem(token) + " "
   
-print(clean_text)
+#print(clean_text)
 # The final resulting variable should be called "clean_text". If all is correct, 
 # then the following code will compute word frequencies and plot a graph.
+
+# *If* you need to print a list of tokens to a file, on the same line, use:
+#
+#f = open("processed.txt", "w")
+#for token in list:
+#    print(token, file = f, end =" ")
+#f.close()
 
 # *If* you need to print a list of tokens to a file, on the same line, use:
 #
